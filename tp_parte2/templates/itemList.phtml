@@ -1,0 +1,60 @@
+<?php include 'header.phtml'; ?>
+
+<h1 class="my-4">Nuestras Películas</h1>
+
+<?php if (isset($_SESSION['IS_LOGGED'])): ?>
+
+    <form action="addItem" method="POST" class="mb-5 p-3 border rounded">
+        <h2 class="h4">Agregar Nueva Película</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="col-md-4">
+                <label for="estudio" class="form-label">Estudio</label>
+                <input type="text" class="form-control" id="estudio" name="estudio" required>
+            </div>
+            <div class="col-md-3">
+                <label for="id_genero" class="form-label">Categoría</label>
+                <select class="form-select" id="id_genero" name="id_genero" required>
+                    <option value="" selected disabled>Elegir...</option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?= $category->id ?>">
+                            <?= htmlspecialchars($category->nombre) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col-md-1 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">Agregar</button>
+            </div>
+        </div>
+    </form>
+
+<?php endif; ?>
+<ul class="list-group">
+    <?php foreach ($items as $item): ?>
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            
+            <a href="pelicula/<?= $item->id_pelicula ?>" class="text-decoration-none text-dark flex-grow-1">
+                <div>
+                    <h5 class="mb-1"><?= htmlspecialchars($item->nombre) ?></h5>
+                    <p class="mb-1">Estudio: <?= htmlspecialchars($item->estudio) ?></p>
+                </div>
+                <small>Genero: <?= htmlspecialchars($item->genero_nombre) ?></small>
+            </a>
+
+            <?php if (isset($_SESSION['IS_LOGGED'])): ?>
+                <div class="ms-3">
+                    <a href="editItem/<?= $item->id_pelicula ?>" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="deleteItem/<?= $item->id_pelicula ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                </div>
+            <?php endif; ?>
+            
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+<?php include 'footer.phtml'; ?>

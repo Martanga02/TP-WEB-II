@@ -1,0 +1,16 @@
+<?php include 'header.phtml'; ?>
+
+<div class="card my-4">
+    <div class="card-header">
+        <h5 class="card-title"><?= htmlspecialchars($item->nombre) ?></h5>
+        <h6 class="card-subtitle mb-2 text-muted">Genero: <?= htmlspecialchars($item->genero_nombre) ?></h6>
+    </div>
+    <div class="card-body">
+        <p class="card-text">Estudio: <?= htmlspecialchars($item->estudio) ?></p>
+        </div>
+    <div class="card-footer">
+        <a href="peliculas" class="btn btn-primary">Volver al listado</a>
+    </div>
+</div>
+
+<?php include 'footer.phtml'; ?>

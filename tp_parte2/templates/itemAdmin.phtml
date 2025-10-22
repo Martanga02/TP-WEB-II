@@ -1,0 +1,54 @@
+<?php include 'header.phtml'; ?>
+
+<div class="d-flex justify-content-between align-items-center my-4">
+    <h1>Administrar Películas</h1>
+    <a href="list" class="btn btn-secondary">Ir a Administrar Categorías</a>
+</div>
+
+<form action="addItem" method="POST" class="mb-5 p-3 border rounded">
+    <h2 class="h4">Agregar Nueva Película</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="col-md-4">
+            <label for="estudio" class="form-label">Estudio</label>
+            <input type="text" class="form-control" id="estudio" name="estudio" required>
+        </div>
+        <div class="col-md-3">
+            <label for="id_genero" class="form-label">Categoría</label>
+            <select class="form-select" id="id_genero" name="id_genero" required>
+                <option value="" selected disabled>Elegir...</option>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= $category->id ?>">
+                        <?= htmlspecialchars($category->nombre) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="col-md-1 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Agregar</button>
+        </div>
+    </div>
+</form>
+
+<h2 class="h4">Películas Existentes</h2>
+<ul class="list-group">
+    <?php foreach ($items as $item): ?>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong><?= htmlspecialchars($item->nombre) ?></strong>
+                (<?= htmlspecialchars($item->estudio) ?>)
+                <br>
+                <small class="text-muted">Genero: <?= htmlspecialchars($item->genero_nombre) ?></small>
+            </div>
+            <div>
+                <a href="editItem/<?= $item->id_pelicula ?>" class="btn btn-primary btn-sm">Editar</a>
+                <a href="deleteItem/<?= $item->id_pelicula ?>" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+<?php include 'footer.phtml'; ?>

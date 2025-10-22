@@ -1,0 +1,21 @@
+<?php include 'header.phtml'; ?>
+
+<h1 class="my-4">Películas de <?= htmlspecialchars($category->nombre) ?></h1>
+
+<a href="<?= BASE_URL ?>list" class="btn btn-secondary mb-3">Volver a categorías</a>
+
+<ul class="list-group">
+    <?php if (empty($items)): ?>
+        <li class="list-group-item">No hay películas en esta categoría.</li>
+    <?php else: ?>
+        <?php foreach ($items as $item): ?>
+            <li class="list-group-item">
+                <h5><?= htmlspecialchars($item->nombre) ?></h5>
+                <p>Estudio: <?= htmlspecialchars($item->estudio) ?></p>
+                <p>Género: <?= htmlspecialchars($item->genero_nombre) ?></p>
+            </li>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</ul>
+
+<?php include 'footer.phtml'; ?>

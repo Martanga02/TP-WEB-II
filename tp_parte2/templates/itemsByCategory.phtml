@@ -1,0 +1,18 @@
+<?php require 'header.phtml'; ?>
+
+<h2>Ítems de la categoría: <?= htmlspecialchars($items[0]->categoria_nombre ?? 'Sin categoría') ?></h2>
+
+<?php if (!empty($items)): ?>
+    <ul>
+        <?php foreach ($items as $item): ?>
+            <li>
+                <a href="item/<?= $item->id ?>"><?= htmlspecialchars($item->titulo) ?></a>
+                — <?= htmlspecialchars($item->categoria_nombre) ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>No hay ítems en esta categoría.</p>
+<?php endif; ?>
+
+<?php require 'footer.phtml'; ?>
