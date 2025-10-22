@@ -14,3 +14,4 @@ Hicimos una base de datos con peliculas actuales, la cual contiene informacion c
 Nuevos datos!
 El user es admin@admin.com
 La contraseña es: admin
+Importar la base de datos para desplegar el sitio
